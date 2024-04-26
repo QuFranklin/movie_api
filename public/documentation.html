@@ -1,15 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation</title>
+    <title>Documention for movie api</title>
+    <style>
+        table , th, td {
+            margin: 5px;
+            border: 1px solid;
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Documentation Page</h1>
-    <p>This is the documentation.html file page</p>
-</body>
+    <h1>Documentation for movie api</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Description of Endpoint Return</th>
+                <th>Endpoint URL</th>
+                <th>Method Type</th>
+                <th>Format of Request Data</th>
+                <th>Format of Response Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Return a list of ALL movies</td>
+                <td>/movies</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object holding data about all movies</td>
+            </tr>
+            <tr>
+                <td>Return data about a single movie by title</td>
+                <td>/movies/:title</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>
+                    A JSON object holding data about the requested movie ex: <br /> <br /> 
+                    <code>
+                        { title: 'Avengers: Endgame',<br /> 
+                        description: "After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",<br /> 
+                        genre: 'Action',<br /> 
+                        director: {<br /> 
+                            name: 'Anthony Russo, Joe Russo',<br />  
+                            bio: 'Collectively known as the Russo brothers are American directors, producers, and screenwriters.',<br /> 
+                            birth_year: '1970, 1971'
+                            },
+                        },
+                    </code>           
+                </td>
+            </tr>
+            <tr>
+                <td>Return data about a single movie's genre by title</td>
+                <td>/movies/:title/genre</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object holding data about the genre of a specific movie ex:
+                    <code>
+                        "Sci-Fi"
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td>Return data about a single movie's director by title</td>
+                <td>/movies/:title/director</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object holding data about the director of a specific movie:<br /> 
+                    <code>
+                        {<br /> 
+                            "name": "Christoper Nolan",<br /> 
+                            "bio": "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",<br /> 
+                            "birth_year": "1970"<br /> 
+                        }
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td>Return the documentation page</td>
+                <td>/documentation</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A html page holding the documentation page of this app</td>
+            </tr>
+            <tr>
+                <td>Create new user</td>
+                <td>/users</td>
+                <td>POST</td>
+                <td>A JSON object holding data from the user to be added:<br /> 
+                    <code>
+                        {<br /> 
+                            "name": "Chris", <br /> 
+                            "favMovies": "Inception"<br /> 
+                        }        
+                    </code>
+                </td>
+                <td>A JSON object holding data from the user that has been added plus uuid:
+                    <code>
+                        {<br /> 
+                            "name": "Chris",<br /> 
+                            "favMovies": "Inception",<br /> 
+                            "id": "c92e0e2a-c9f4-43ff-891b-a2561c6ce4d0"<br /> 
+                        }
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td>Update user name by uuid</td>
+                <td>/users/:id</td>
+                <td>PUT</td>
+                <td>A JSON object holding data from the user to be updated:<br /> 
+                    <code>
+                        {<br /> 
+                            "name": "Updated name"<br /> 
+                        }     
+                    </code>
+                </td>
+                <td>A JSON object holding data from the user that has been updated:<br /> 
+                    <code>
+                        {<br /> 
+                            "user": "2",<br /> 
+                            "name": "Updated name",<br /> 
+                            "favMovies": []<br /> 
+                        }
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td>Update users favMovies by title and user id</td>
+                <td>/users/:id/:title</td>
+                <td>POST</td>
+                <td>None</td>
+                <td>A message returning if a movie has been successfully added to the list.
+                </td>
+            </tr>
+            <tr>
+                <td>Delete a user's favMovie</td>
+                <td>/users/:id/:title</td>
+                <td>DELETE</td>
+                <td>None</td>
+                <td>A message returning if a movie has been successfully removed from the list.
 
+                </td>
+                </tr>
+            <tr>
+                <td>Delete a user</td>
+                <td>/users/:id/</td>
+                <td>DELETE</td>
+                <td>None</td>
+                <td>A message returning if the user was successfully deleted</td>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
 </html>
