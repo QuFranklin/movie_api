@@ -13,9 +13,11 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 let movies = [
     {
         title: 'Avengers: Endgame', 
-        description: 
-            "After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
-        genre: 'Action',
+        description: "After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+        genre: {
+            name: 'Action',
+            description: 'A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences.'
+        },
         director: {
           name: 'Anthony Russo, Joe Russo', 
           bio: 'Collectively known as the Russo brothers are American directors, producers, and screenwriters.',
@@ -25,7 +27,10 @@ let movies = [
     {
         title: 'Spider-Man: No Way Home',
         description: 'When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.',
-        genre: 'Action',
+        genre: {
+            name: 'Action',
+            description: 'A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences.'
+        },
         director: {
             name: 'Jon Watts',
             bio: 'An American film director, producer and screenwriter.',
@@ -35,7 +40,10 @@ let movies = [
     {
         title: 'Ip Man 2',
         description: 'This film inspired by a true story, Wing Chun martial arts master Ip Man (Donnie Yen) and his family are moving from Foshan, China, to Hong Kong, where Ip aspires to create a school so that he may teach his fighting techniques to a new generation. However, he finds resistance from an asthmatic Hung Ga master named Hong Zhen Nan (Sammo Hung). Soon, Ip is drawn into a treacherous world of corruption as well as a fateful showdown with a merciless boxer known as the Twister (Darren Shahlavi).',
-        genre: 'action',
+        genre: {
+            name: 'Action',
+            description: 'A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences.'
+        },
         director: {  
             name: 'Wilson Yip',
             bio: 'A Hong Kong actor, filmmaker and screenwriter.',
@@ -45,7 +53,10 @@ let movies = [
     {
         title: 'Rush Hour',
         description: "A loyal and dedicated Hong Kong Inspector teams up with a reckless and loudmouthed L.A.P.D. detective to rescue the Chinese Consul's kidnapped daughter, while trying to arrest a dangerous crime lord along the way.",
-        genre: 'Action',
+        genre: {
+            name: 'Action',
+            description: 'A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences.'
+        },
         director: {
             name: 'Brett Ratner',
             bio: 'An American film director and producer.',
@@ -56,7 +67,10 @@ let movies = [
     {
         title: 'Interstellar',
         description: 'Set in a dystopian future where humanity is embroiled in a catastrophic blight and famine, the film follows a group of astronauts who travel through a wormhole near Saturn in search of a new home for humankind.',
-        genre: 'Sci-fi',
+        genre: {
+            name: 'Sci-Fi',
+            description: 'A film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science.'
+        },
         director: {
             name: 'Christopher Nolam',
             bio: "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",
@@ -67,7 +81,10 @@ let movies = [
     {
         title: 'Spirited Away',
         description: "Chihiro's family is moving to a new house, but when they stop on the way to explore an abandoned village, her parents undergo a mysterious transformation and Chihiro is whisked into a world of fantastic spirits ruled over by the sorceress Yubaba.",
-        genre: 'Fantasy',
+        genre: {
+            name: 'Fantasy',
+            description: 'A genre of speculative fiction involving magical elements, typically set in a fantasy world and usually inspired by mythology or folklore.'
+        },
         director: {
             name: 'Hayao Miyazaki',
             bio: 'A Japanese animator, filmmaker, and manga artist.',
@@ -78,7 +95,10 @@ let movies = [
     {
         title: 'Your Name',
         description: 'A teenage boy and girl embark on a quest to meet each other for the first time after they magically swap bodies.',
-        genre: 'Romance',
+        genre: {
+            name: 'Romance',
+            description: 'A genre fiction novel that primary focuses on the relationship and romantic love between two people, typically with an emotionally satisfying and optimistic ending.'
+        },
         director: {
             name: 'Makoto Shinkai',
             bio: 'A Japanese filmmaker and novelist.',
@@ -89,7 +109,10 @@ let movies = [
     {
         title: 'Inception',
         description: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.',
-        genre: 'Sci-Fi',
+        genre: {
+            name: 'Sci-Fi',
+            description: 'A film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science.'
+        },
         director: {
             name: 'Christoper Nolan',
             bio: "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",
@@ -99,7 +122,10 @@ let movies = [
     {
         title: 'Fearless',
         description: "After a terrible tragedy, a martial artist (Jet Li) retreats to a remote village to gain a new appreciation for the important things in life, but when he returns to the city to reconcile his past with the present, he gets caught up in a duel to the death defending China's honor.",
-        genre: 'Action',
+        genre: {
+            name: 'Action',
+            description: 'A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences.'
+        },
         director: {
             name: 'Ronny Yu',
             bio: 'A Hong Kong film director, producer, and movie writer.',
@@ -110,7 +136,10 @@ let movies = [
     {
         title: 'The Karate Kid',
         description: "When his mother's career results in a move to China, 12-year-old Dre Parker (Jaden Smith) finds that he is a stranger in a strange land. Though he knows a little karate, his fighting skills are no match for Cheng, the school bully. Dre finds a friend in Mr. Han (Jackie Chan), a maintenance man who is also a martial-arts master. Mr. Han teaches Dre all about kung fu in the hope that Dre will be able to face down Cheng and perhaps win the heart of a pretty classmate named Mei Ying.",
-        genre: 'Action',
+        genre: {
+            name: 'Action',
+            description: 'A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences.'
+        },
         director: {
             name: 'Harald Zwart',
             bio: 'A Dutch-Norwegian film director.',
