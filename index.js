@@ -47,7 +47,7 @@ let movies = [
         director: {  
             name: 'Wilson Yip',
             bio: 'A Hong Kong actor, filmmaker and screenwriter.',
-            birth_year: '1964',
+            birth_year: '1963',
         },
     },
     {
