@@ -19,9 +19,9 @@ let movies = [
             description: 'A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences.'
         },
         director: {
-          name: 'Anthony Russo, Joe Russo', 
+          name: 'Anthony Russo', 
           bio: 'Collectively known as the Russo brothers are American directors, producers, and screenwriters.',
-          birth_year: '1970, 1971'
+          birth_year: '1970'
         },
     },
     {
