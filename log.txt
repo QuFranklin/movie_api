@@ -441,3 +441,4 @@ Timestamp: Sat Feb 17 2024 15:09:29 GMT-0500 (Eastern Standard Time)
 ::1 - - [27/Apr/2024:22:50:36 +0000] "GET /movies/Rush%20Hour/genre HTTP/1.1" 200 46 "-" "PostmanRuntime/7.37.3"
 ::1 - - [27/Apr/2024:22:52:05 +0000] "GET /documentation HTTP/1.1" 200 6202 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
 ::1 - - [27/Apr/2024:22:52:29 +0000] "GET /movies/Rush%20Hour/genre HTTP/1.1" 200 137 "-" "PostmanRuntime/7.37.3"
+::1 - - [28/Apr/2024:04:43:37 +0000] "GET /movies/Rush%20Hour HTTP/1.1" 500 500 "-" "PostmanRuntime/7.37.3"

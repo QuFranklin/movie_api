@@ -72,7 +72,7 @@ let movies = [
             description: 'A film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science.'
         },
         director: {
-            name: 'Christopher Nolam',
+            name: 'Christopher Nolan',
             bio: "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",
             birth_year: '1970'
         },
