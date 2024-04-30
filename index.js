@@ -21,7 +21,7 @@ let movies = [
         director: {
           name: 'Anthony Russo', 
           bio: 'Collectively known as the Russo brothers are American directors, producers, and screenwriters.',
-          birth_year: '1970'
+          birth_year: '1970-02-03'
         },
     },
     {
@@ -34,7 +34,7 @@ let movies = [
         director: {
             name: 'Jon Watts',
             bio: 'An American film director, producer and screenwriter.',
-            birth_year: '1981'
+            birth_year: '1982-06-28'
         },
     },
     {
@@ -47,7 +47,7 @@ let movies = [
         director: {  
             name: 'Wilson Yip',
             bio: 'A Hong Kong actor, filmmaker and screenwriter.',
-            birth_year: '1963',
+            birth_year: '1963-10-23',
         },
     },
     {
@@ -60,7 +60,7 @@ let movies = [
         director: {
             name: 'Brett Ratner',
             bio: 'An American film director and producer.',
-            birth_year: '1969',
+            birth_year: '1969-03-28',
         },
         
     },
@@ -74,7 +74,7 @@ let movies = [
         director: {
             name: 'Christopher Nolan',
             bio: "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",
-            birth_year: '1970'
+            birth_year: '1970-07-30'
         },
         
     },
@@ -88,7 +88,7 @@ let movies = [
         director: {
             name: 'Hayao Miyazaki',
             bio: 'A Japanese animator, filmmaker, and manga artist.',
-            birth_year: '1941',
+            birth_year: '1941-01-05',
         },
         
     },
@@ -102,7 +102,7 @@ let movies = [
         director: {
             name: 'Makoto Shinkai',
             bio: 'A Japanese filmmaker and novelist.',
-            birth_year: '1973',
+            birth_year: '1973-02-09',
         },
         
     },
@@ -116,7 +116,7 @@ let movies = [
         director: {
             name: 'Christoper Nolan',
             bio: "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",
-            birth_year: '1970'
+            birth_year: '1970-07-30'
         },
     },
     {
@@ -129,7 +129,7 @@ let movies = [
         director: {
             name: 'Ronny Yu',
             bio: 'A Hong Kong film director, producer, and movie writer.',
-            birth_year: '1950',
+            birth_year: '1950-07-01',
         },
         
     },
@@ -143,7 +143,7 @@ let movies = [
         director: {
             name: 'Harald Zwart',
             bio: 'A Dutch-Norwegian film director.',
-            birth_year: '1965',
+            birth_year: '1965-07-01',
         },
         
     },
