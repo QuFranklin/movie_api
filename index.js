@@ -61,8 +61,7 @@ let movies = [
             name: 'Brett Ratner',
             bio: 'An American film director and producer.',
             birth_year: '1969-03-28',
-        },
-        
+        },  
     },
     {
         title: 'Interstellar',
@@ -147,6 +146,19 @@ let movies = [
         },
         
     },
+    {
+        title: 'Suzume',
+        description: 'The film follows 17-year-old high school girl Suzume Iwato and young stranger Souta Munakata, who team up to prevent a series of disasters across Japan by sealing doors from the colossal, supernatural worm that causes earthquakes after being released.',
+        genre: {
+            name: 'Fantasy',
+            description: 'A genre of speculative fiction involving magical elements, typically set in a fantasy world and usually inspired by mythology or folklore.'
+        },
+        director: {
+            name: 'Makoto Shinkai',
+            bio: 'A Japanese filmmaker and novelist.',
+            birth_year: '1973-02-09',
+        },
+    }
 ];
 
 let users = [
