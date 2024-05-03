@@ -39,14 +39,19 @@
                 <td>
                     A JSON object holding data about the requested movie ex: <br /> <br /> 
                     <code>
-                        { title: 'Avengers: Endgame',<br /> 
-                        description: "After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",<br /> 
-                        genre: 'Action',<br /> 
-                        director: {<br /> 
-                            name: 'Anthony Russo, Joe Russo',<br />  
+                        { 
+                            _id: ObjectId('662eec1590a58b1849d41267'),<br /> 
+                            title: 'Avengers: Endgame',<br /> 
+                            description: "After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",<br /> 
+                            genre: {<br /> 
+                            name: 'Action',<br /> 
+                            description: 'A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences.'<br /> 
+                            },<br /> 
+                            director: {<br /> 
+                            name: 'Anthony Russo',<br /> 
                             bio: 'Collectively known as the Russo brothers are American directors, producers, and screenwriters.',<br /> 
-                            birth_year: '1970, 1971'
-                            },
+                            birth_year: '1970-07-30'<br /> 
+                            }<br />          
                         },
                     </code>           
                 </td>
@@ -70,9 +75,10 @@
                 <td>A JSON object holding data about the director of a specific movie:<br /> 
                     <code>
                         {<br /> 
-                            "name": "Christoper Nolan",<br /> 
-                            "bio": "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",<br /> 
-                            "birth_year": "1970"<br /> 
+                            _id: ObjectId('6631d76790a58b1849d41278'),<br />
+                            name: 'Jon Watts',<br />
+                            bio: 'An American film director, producer and screenwriter.',<br />
+                            birth_year: '1982-06-28'<br />
                         }
                     </code>
                 </td>
@@ -91,17 +97,25 @@
                 <td>A JSON object holding data from the user to be added:<br /> 
                     <code>
                         {<br /> 
-                            "name": "Chris", <br /> 
-                            "favMovies": "Inception"<br /> 
+                            username: 'sarahsmith',<br />
+                            name: 'Sarah Smith',<br />
+                            email: 'sarah.smith@email.com',<br />
+                            password: 'pass123',<br />
+                            birthDate: '1988-10-20',<br />
+                            favmovies: [ 'Spirited Away' ]<br />
                         }        
                     </code>
                 </td>
                 <td>A JSON object holding data from the user that has been added plus uuid:
                     <code>
                         {<br /> 
-                            "name": "Chris",<br /> 
-                            "favMovies": "Inception",<br /> 
-                            "id": "c92e0e2a-c9f4-43ff-891b-a2561c6ce4d0"<br /> 
+                            _id: ObjectId('6631d50690a58b1849d41273'),<br />
+                            username: 'sarahsmith',<br />
+                            name: 'Sarah Smith',<br />
+                            email: 'sarah.smith@email.com',<br />
+                            password: 'pass123',<br />
+                            birthDate: '1988-10-20',<br />
+                            favmovies: [ 'Spirited Away' ]<br /> 
                         }
                     </code>
                 </td>
@@ -120,9 +134,13 @@
                 <td>A JSON object holding data from the user that has been updated:<br /> 
                     <code>
                         {<br /> 
-                            "user": "2",<br /> 
-                            "name": "Updated name",<br /> 
-                            "favMovies": []<br /> 
+                            _id: ObjectId('6631d4ee90a58b1849d41272'),<br />
+                            username: 'johndoe',<br />
+                            name: 'Updated name',<br />
+                            email: 'johndoe@example.com',<br />
+                            password: '123456',<br />
+                            birthDate: '1990-05-15',<br />
+                            favmovies: [ 'Inception' ]<br />
                         }
                     </code>
                 </td>
