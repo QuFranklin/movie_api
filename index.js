@@ -1,13 +1,22 @@
 const express = require('express');
-      
-      morgan = require('morgan');
-      fs = require('fs'), // import built in node modules fs and path 
-      path = require('path'); // import built in node modules path
-      
-      bodyParser = require('body-parser'),
-      uuid = require('uuid');
-
+    morgan = require('morgan');
+    fs = require('fs'), // import built in node modules fs and path 
+    path = require('path'); // import built in node modules path  
+    bodyParser = require('body-parser'),
+    uuid = require('uuid');
 const app = express();
+
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect('mongodb://localhost:27017/myflixdb', { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+});
+
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'}) // create a write stream and append to log.txt file
 
 let movies = [
@@ -21,7 +30,7 @@ let movies = [
         director: {
           name: 'Anthony Russo', 
           bio: 'Collectively known as the Russo brothers are American directors, producers, and screenwriters.',
-          birth_year: '1970-02-03'
+          birthDate: '1970-02-03'
         },
     },
     {
@@ -34,7 +43,7 @@ let movies = [
         director: {
             name: 'Jon Watts',
             bio: 'An American film director, producer and screenwriter.',
-            birth_year: '1982-06-28'
+            birthDate: '1982-06-28'
         },
     },
     {
@@ -47,7 +56,7 @@ let movies = [
         director: {  
             name: 'Wilson Yip',
             bio: 'A Hong Kong actor, filmmaker and screenwriter.',
-            birth_year: '1963-10-23',
+            birthDate: '1963-10-23',
         },
     },
     {
@@ -60,7 +69,7 @@ let movies = [
         director: {
             name: 'Brett Ratner',
             bio: 'An American film director and producer.',
-            birth_year: '1969-03-28',
+            birthDate: '1969-03-28',
         },  
     },
     {
@@ -73,7 +82,7 @@ let movies = [
         director: {
             name: 'Christopher Nolan',
             bio: "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",
-            birth_year: '1970-07-30'
+            birthDate: '1970-07-30'
         },
         
     },
@@ -87,7 +96,7 @@ let movies = [
         director: {
             name: 'Hayao Miyazaki',
             bio: 'A Japanese animator, filmmaker, and manga artist.',
-            birth_year: '1941-01-05',
+            birthDate: '1941-01-05',
         },
         
     },
@@ -101,7 +110,7 @@ let movies = [
         director: {
             name: 'Makoto Shinkai',
             bio: 'A Japanese filmmaker and novelist.',
-            birth_year: '1973-02-09',
+            birthDate: '1973-02-09',
         },
         
     },
@@ -115,7 +124,7 @@ let movies = [
         director: {
             name: 'Christoper Nolan',
             bio: "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",
-            birth_year: '1970-07-30'
+            birthDate: '1970-07-30'
         },
     },
     {
@@ -128,7 +137,7 @@ let movies = [
         director: {
             name: 'Ronny Yu',
             bio: 'A Hong Kong film director, producer, and movie writer.',
-            birth_year: '1950-07-01',
+            birthDate: '1950-07-01',
         },
         
     },
@@ -142,7 +151,7 @@ let movies = [
         director: {
             name: 'Harald Zwart',
             bio: 'A Dutch-Norwegian film director.',
-            birth_year: '1965-07-01',
+            birthDate: '1965-07-01',
         },
         
     },
@@ -156,21 +165,27 @@ let movies = [
         director: {
             name: 'Makoto Shinkai',
             bio: 'A Japanese filmmaker and novelist.',
-            birth_year: '1973-02-09',
+            birthDate: '1973-02-09',
         },
     }
 ];
 
 let users = [
     {
-        id: '1',
-        name: 'John Doe',
-        favMovies: []
+        Username: 'johndoe',
+        Name: 'John Doe',
+        Email: 'johndoe@example.com',
+        Password: '123456',
+        birthDate: '1990-05-15',
+        favmovies: [ 'Inception' ]
     },
     {
-        id: '2',
-        name: 'Anne Doe',
-        favMovies: ['Inception']
+        username: 'sarahsmith',
+        name: 'Sarah Smith',
+        email: 'sarah.smith@email.com',
+        password: 'pass123',
+        birthDate: '1988-10-20',
+        favmovies: [ 'Spirited Away' ]
     },
 ];
 
@@ -265,8 +280,26 @@ app.get('/movies/:title/director', (req, res) => { // Gets director by title
     }
 });
 
-app.get('/users', (req, res) => {  // Gets the list of users
-    res.json(users);
+app.get('/users', async (req, res) => { // Gets user
+    await Users.find()
+        .then((users) => {
+            res.status(201).json(users);
+    })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+    });
+});
+
+app.get('/users/:Username', async (req, res) => {  // Get a user by username
+    await Users.findOne({ Username: req.params.Username })
+        .then((user) => {
+            res.json(user);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
 });
 
 // POST requests
@@ -278,19 +311,31 @@ paths:
       summary: Create a new user
       description: Adds a new user to the system.
  */
-app.post('/users', (req, res) => { // CREATE user
-    const newUser = req.body;
-    
-    if (newUser.name) {
-      newUser.id = uuid.v4();
-      users.push(newUser);
-      res.status(201).send(newUser);
-    }
-    else {
-      res.status(400).send('Name is missing.');
-    }
-});
-
+      app.post('/users', async (req, res) => {
+        await Users.findOne({ Username: req.body.Username })
+          .then((user) => {
+            if (user) {
+              return res.status(400).send(req.body.Username + 'already exists');
+            } else {
+              Users
+                .create({
+                  Username: req.body.Username,
+                  Password: req.body.Password,
+                  Email: req.body.Email,
+                  Birthday: req.body.Birthday
+                })
+                .then((user) =>{res.status(201).json(user) })
+              .catch((error) => {
+                console.error(error);
+                res.status(500).send('Error: ' + error);
+              })
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
+          });
+      });
 /**
 paths:
   /users/{id}/{movieTitle}:
