@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documention for movie api</title>
+    <title>myflixdb</title>
     <style>
         table , th, td {
             margin: 5px;
@@ -57,8 +57,8 @@
                 </td>
             </tr>
             <tr>
-                <td>Return data about a single movie's genre by title</td>
-                <td>/movies/:title/genre</td>
+                <td>Return data about a genre</td>
+                <td>/genres/:name</td>
                 <td>GET</td>
                 <td>None</td>
                 <td>A JSON object holding data about the genre of a specific movie ex:
@@ -68,17 +68,17 @@
                 </td>
             </tr>
             <tr>
-                <td>Return data about a single movie's director by title</td>
-                <td>/movies/:title/director</td>
+                <td>Return data about a director</td>
+                <td>/directors/:name</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object holding data about the director of a specific movie:<br /> 
+                <td>A JSON object holding data about the director:<br /> 
                     <code>
                         {<br /> 
-                            _id: ObjectId('6631d76790a58b1849d41278'),<br />
-                            name: 'Jon Watts',<br />
-                            bio: 'An American film director, producer and screenwriter.',<br />
-                            birth_year: '1982-06-28'<br />
+                            "_id": "6631d70290a58b1849d41276",<br />
+                            "name": "Christopher Nolan",<br />
+                             "bio": "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films.",<br />
+                             "birth_year": "1970-07-30"<br />
                         }
                     </code>
                 </td>
@@ -121,14 +121,16 @@
                 </td>
             </tr>
             <tr>
-                <td>Update user name by uuid</td>
-                <td>/users/:id</td>
+                <td>Update username, password or email.</td>
+                <td>/users/frank</td>
                 <td>PUT</td>
                 <td>A JSON object holding data from the user to be updated:<br /> 
                     <code>
-                        {<br /> 
-                            "name": "Updated name"<br /> 
-                        }     
+                        {<br />
+                            "username": "updated name",<br />
+                            "password": "222222",<br />
+                            "email" : "updatedemail@email.com"<br />
+                        }
                     </code>
                 </td>
                 <td>A JSON object holding data from the user that has been updated:<br /> 
@@ -146,16 +148,16 @@
                 </td>
             </tr>
             <tr>
-                <td>Update users favMovies by title and user id</td>
-                <td>/users/:id/:title</td>
+                <td>Add a movie to user's favmovies </td>
+                <td>/users/:username/favmovies/:MovieID</td>
                 <td>POST</td>
                 <td>None</td>
                 <td>A message returning if a movie has been successfully added to the list.
                 </td>
             </tr>
             <tr>
-                <td>Delete a user's favMovie</td>
-                <td>/users/:id/:title</td>
+                <td>Delete a movie from user's favmovie</td>
+                <td>/users/:username/:MovieID</td>
                 <td>DELETE</td>
                 <td>None</td>
                 <td>A message returning if a movie has been successfully removed from the list.
@@ -164,7 +166,7 @@
                 </tr>
             <tr>
                 <td>Delete a user</td>
-                <td>/users/:id/</td>
+                <td>/users/:username/</td>
                 <td>DELETE</td>
                 <td>None</td>
                 <td>A message returning if the user was successfully deleted</td>
