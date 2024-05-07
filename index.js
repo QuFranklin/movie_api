@@ -23,6 +23,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 app.use(express.static('public'));
 
 
@@ -218,8 +222,8 @@ paths:
        description: Returns a JSON array containing information about movies.
  */
 
-app.get('/movies', (req, res) => { // Gets the list of movies
-    Movies.find()
+app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => { // Gets the list of movies
+    await Movies.find()
     .then((movies) => {
         res.status(201).json(movies);
     })
@@ -237,8 +241,8 @@ paths:
       description: Returns information about a movie based on its title.
  */
 
- app.get('/movies/:title', (req, res) => { // Gets the data about a certain movie
-    Movies.findOne({ title: req.params.title})
+ app.get('/movies/:title', passport.authenticate('jwt', { session: false }), async (req, res) => { // Gets the data about a certain movie
+    await Movies.findOne({ title: req.params.title})
         .then((movie) => {
             res.status(201).json(movie);
         })
@@ -256,8 +260,8 @@ paths:
        description: Returns a JSON array containing information about genres.
  */
 
-app.get('/genres', (req, res) => {
-    Genres.find()
+app.get('/genres', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    await Genres.find()
     .then((genre) => {
         res.status(201).json(genre);
     })
@@ -275,8 +279,8 @@ paths:
       description: Returns information about a genre based on its name.
  */
 
-app.get('/genres/:name', (req, res) => {
-    Genres.findOne({ name: req.params.name})
+app.get('/genres/:name', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    await Genres.findOne({ name: req.params.name})
         .then((genre) => {
             res.status(201).json(genre);
         })
@@ -294,8 +298,8 @@ paths:
        description: Returns a JSON array containing information about directors.
  */
 
-app.get('/directors', (req,res) => {
-    Directors.find()
+app.get('/directors', passport.authenticate('jwt', { session: false }), async (req,res) => {
+    await Directors.find()
     .then ((director) => {
         res.status(201).json(director);
     })
@@ -313,8 +317,8 @@ paths:
       description: Returns information about director by its name.
  */
 
-app.get('/directors/:name', (req, res) => { // Gets director 
-    Directors.findOne({ name: req.params.name })
+app.get('/directors/:name', passport.authenticate('jwt', { session: false }), async (req, res) => { // Gets director 
+    await Directors.findOne({ name: req.params.name })
     .then((directors) => {
         res.json(directors);
     })
@@ -332,7 +336,7 @@ paths:
        description: Returns a JSON array containing information about users.
  */
 
-app.get('/users', async (req, res) => { // Gets all users
+app.get('/users', passport.authenticate('jwt', { session: false }), async (req, res) => { // Gets all users
     await Users.find()
       .then((users) => {
         res.status(201).json(users);
@@ -351,7 +355,7 @@ paths:
       description: Returns information about user by its username.
  */
 
-app.get('/users/:username', async (req, res) => {  
+app.get('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {  
     await Users.findOne({ username: req.params.username })
         .then((user) => {
             res.json(user);
@@ -405,8 +409,14 @@ app.post('/users', (req, res) => {
       summary: Update username
       description: Updates the username of a user.
  */
-app.put('/users/:username', (req, res) => { // UPDATE user 
-    Users.findOneAndUpdate({ username: req.params.username}, 
+app.put('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    // CONDITION TO CHECK ADDED HERE
+    if(req.user.Username !== req.params.Username){
+        return res.status(400).send('Permission denied');
+    }
+    // CONDITION ENDS 
+    
+    await Users.findOneAndUpdate({ username: req.params.username}, 
         { $set: {
             username: req.body.username,
             password: req.body.password,
@@ -414,7 +424,7 @@ app.put('/users/:username', (req, res) => { // UPDATE user
             birthDate: req.body.birthDate
           }
         },
-        { new: true })
+        { new: true }) // This line makes sure that the updated document is returned
         .then((updatedUser) => {
             res.status(200).json(updatedUser);
         })
@@ -434,8 +444,8 @@ paths:
       description: Deletes a user from the system.
  */
 
-app.delete("/users/:username", (req, res) => {
-    Users.findOneAndDelete({ username: req.params.username })
+app.delete("/users/:username", passport.authenticate('jwt', { session: false }), async(req, res) => {
+    await Users.findOneAndDelete({ username: req.params.username })
         .then((user) => {
             if (!user) {
               res.status(400).send(req.params.username + " was not found");
@@ -456,7 +466,7 @@ paths:
       summary: Add a movie to a user's favorite movie list
       description: Adds a movie to the favorite movie list of a user.
  */
-app.post('/users/:username/favmovies/:MovieID', async (req, res) => { // Add a movie to user's favorite movie list
+app.post('/users/:username/favmovies/:MovieID', passport.authenticate('jwt', { session: false }), async (req, res) => { // Add a movie to user's favorite movie list
     await Users.findOneAndUpdate({ username: req.params.username}, {
         $push: { favmovies: req.params.MovieID }},
         { new: true })
@@ -476,7 +486,7 @@ paths:
       summary: Remove a movie from user's favorite list
       description: Removes a movie from the favorite list of a user.
  */
-app.delete('/users/:username/:MovieID', async  (req, res) => { //
+app.delete('/users/:username/:MovieID', passport.authenticate('jwt', { session: false }), async  (req, res) => { //
     await Users.findOneAndUpdate({ username: req.params.username }, {
         $pull: { favmovies: req.params.MovieID}},
         { new: true })
