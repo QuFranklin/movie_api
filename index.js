@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost:27017/[myflixdb]', {
 });
 
 const express = require('express');
-const morgan = require('morgan');
+//const morgan = require('morgan');
 uuid = require('uuid');
 
 //const fs = require('fs'); // import built in node modules fs and path 
@@ -23,9 +23,14 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const cors = require('cors');
+app.use(cors());
+
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
+const { check, validationResult } = require('express-validator');
+
 
 app.use(express.static('public'));
 
@@ -375,32 +380,47 @@ paths:
       summary: Create a new user
       description: Adds a new user to the system.
  */
-app.post('/users', (req, res) => {
-    Users.findOne({ username: req.body.username })
-        .then((user) => {
-            if (user) {
-              return res.status(400).send(req.body.username + 'already exists');
-            } else {
-              Users
-                .create({
-                    username: req.body.username,
-                    password: req.body.password,
-                    email: req.body.email,
-                    birthDate: req.body.birthDate
-                })
+app.post('/users', 
+    [
+        check('username', 'Username is required.').not().isEmpty(),
+        check('username', 'Username must contain at least 5 characters.').isLength({min: 5}),
+        check('username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+        check('password', 'Password is required').not().isEmpty(),
+        check('email', 'Email does not appear to be valid').isEmail()
+    ], 
+        async (req, res) => {
+            // check the validation object for errors
+            let errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({ errors: errors.array() });
+            }   
+            let hashedPassword = Users.hashPassword(req.body.password);
+            
+            await Users.findOne({ username: req.body.username })
                 .then((user) => {
-                    res.status(201).json(user) 
+                    if (user) {
+                    return res.status(400).send(req.body.username + 'already exists');
+                    } else {
+                    Users
+                        .create({
+                            username: req.body.username,
+                            password: hashedPassword,
+                            email: req.body.email,
+                            birthDate: req.body.birthDate
+                        })
+                        .then((user) => {
+                            res.status(201).json(user) 
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            res.status(500).send('Error: ' + error);
+                        });
+                    }
                 })
                 .catch((error) => {
                     console.error(error);
                     res.status(500).send('Error: ' + error);
                 });
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-            res.status(500).send('Error: ' + error);
-        });
 });
 
 /**paths:
@@ -411,7 +431,7 @@ app.post('/users', (req, res) => {
  */
 app.put('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     // CONDITION TO CHECK ADDED HERE
-    if(req.user.Username !== req.params.Username){
+    if(req.user.username !== req.params.username){
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS 
