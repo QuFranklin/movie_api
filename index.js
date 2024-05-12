@@ -1,4 +1,6 @@
+const express = require('express');
 const mongoose = require('mongoose');
+let bodyParser = require('body-parser');
 const Models = require('./models.js');
 
 const Movies = Models.Movie;
@@ -11,7 +13,7 @@ mongoose.connect('mongodb://localhost:27017/[myflixdb]', {
     useUnifiedTopology: true 
 });
 
-const express = require('express');
+app.use(bodyParser.json());
 //const morgan = require('morgan');
 uuid = require('uuid');
 
