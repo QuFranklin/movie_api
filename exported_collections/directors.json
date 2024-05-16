@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "6631d70290a58b1849d41276"
+  },
+  "name": "Christoper Nolan",
+  "bio": "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films.",
+  "birth_year": "1970-07-30"
+},
+{
+  "_id": {
+    "$oid": "6631d72390a58b1849d41277"
+  },
+  "name": "Makoto Shinkai",
+  "bio": "A Japanese filmmaker and novelist.",
+  "birth_year": "1973-02-09"
+},
+{
+  "_id": {
+    "$oid": "6631d76790a58b1849d41278"
+  },
+  "name": "Jon Watts",
+  "bio": "An American film director, producer and screenwriter.",
+  "birth_year": "1982-06-28"
+}]

@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "6631d4ee90a58b1849d41272"
+  },
+  "username": "johndoe",
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "123456",
+  "birthDate": "1990-05-15",
+  "favmovies": [
+    "Inception"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6631d50690a58b1849d41273"
+  },
+  "username": "sarahsmith",
+  "name": "Sarah Smith",
+  "email": "sarah.smith@email.com",
+  "password": "pass123",
+  "birthDate": "1988-10-20",
+  "favmovies": [
+    "Spirited Away"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6631d51e90a58b1849d41274"
+  },
+  "username": "mike_jones",
+  "name": "Mike Jones",
+  "email": "mike.jones@domain.com",
+  "password": "securepwd",
+  "birthDate": "1985-03-07",
+  "favmovies": "Rush Hour"
+}]

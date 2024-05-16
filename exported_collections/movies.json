@@ -1,0 +1,160 @@
+[{
+  "_id": {
+    "$oid": "662eec1590a58b1849d41267"
+  },
+  "title": "Avengers: Endgame",
+  "description": "After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+  "genre": {
+    "name": "Action",
+    "description": "A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences."
+  },
+  "director": {
+    "name": "Anthony Russo",
+    "bio": "Collectively known as the Russo brothers are American directors, producers, and screenwriters.",
+    "birth_year": "1970-07-30"
+  }
+},
+{
+  "_id": {
+    "$oid": "6631a67090a58b1849d41268"
+  },
+  "title": "Spider-Man: No Way Home",
+  "description": "When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.",
+  "genre": {
+    "name": "Action",
+    "description": "A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences."
+  },
+  "director": {
+    "name": "Jon Watts",
+    "bio": "An American film director, producer and screenwriter.",
+    "birth_year": "1982-06-28"
+  }
+},
+{
+  "_id": {
+    "$oid": "6631a6cb90a58b1849d41269"
+  },
+  "title": "Ip Man 2",
+  "description": "This film inspired by a true story, Wing Chun martial arts master Ip Man (Donnie Yen) and his family are moving from Foshan, China, to Hong Kong, where Ip aspires to create a school so that he may teach his fighting techniques to a new generation. However, he finds resistance from an asthmatic Hung Ga master named Hong Zhen Nan (Sammo Hung). Soon, Ip is drawn into a treacherous world of corruption as well as a fateful showdown with a merciless boxer known as the Twister (Darren Shahlavi).",
+  "genre": {
+    "name": "Action",
+    "description": "A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences."
+  },
+  "director": {
+    "name": "Wilson Yip",
+    "bio": "A Hong Kong actor, filmmaker and screenwriter.",
+    "birth_year": "1963-10-23"
+  }
+},
+{
+  "_id": {
+    "$oid": "6631a8de90a58b1849d4126b"
+  },
+  "title": "Rush Hour",
+  "description": "A loyal and dedicated Hong Kong Inspector teams up with a reckless and loudmouthed L.A.P.D. detective to rescue the Chinese Consul's kidnapped daughter, while trying to arrest a dangerous crime lord along the way.",
+  "genre": {
+    "name": "Action",
+    "description": "A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences."
+  },
+  "director": {
+    "name": "Brett Ratner",
+    "bio": "An American film director and producer.",
+    "birth_year": "1969-03-28"
+  }
+},
+{
+  "_id": {
+    "$oid": "6631a8e290a58b1849d4126c"
+  },
+  "title": "Interstellar",
+  "description": "Set in a dystopian future where humanity is embroiled in a catastrophic blight and famine, the film follows a group of astronauts who travel through a wormhole near Saturn in search of a new home for humankind.",
+  "genre": {
+    "name": "Sci-Fi",
+    "description": "A film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science."
+  },
+  "director": {
+    "name": "Christopher Nolan",
+    "bio": "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",
+    "birth_year": "1970-07-30"
+  }
+},
+{
+  "_id": {
+    "$oid": "6631a8e590a58b1849d4126d"
+  },
+  "title": "Spirited Away",
+  "description": "Chihiro's family is moving to a new house, but when they stop on the way to explore an abandoned village, her parents undergo a mysterious transformation and Chihiro is whisked into a world of fantastic spirits ruled over by the sorceress Yubaba.",
+  "genre": {
+    "name": "Fantasy",
+    "description": "A genre of speculative fiction involving magical elements, typically set in a fantasy world and usually inspired by mythology or folklore."
+  },
+  "director": {
+    "name": "Hayao Miyazaki",
+    "bio": "A Japanese animator, filmmaker, and manga artist.",
+    "birth_year": "1941-01-05"
+  }
+},
+{
+  "_id": {
+    "$oid": "6631a8e790a58b1849d4126e"
+  },
+  "title": "Your Name",
+  "description": "A teenage boy and girl embark on a quest to meet each other for the first time after they magically swap bodies.",
+  "genre": {
+    "name": "Romance",
+    "description": "A genre fiction novel that primary focuses on the relationship and romantic love between two people, typically with an emotionally satisfying and optimistic ending."
+  },
+  "director": {
+    "name": "Makoto Shinkai",
+    "bio": "A Japanese filmmaker and novelist.",
+    "birth_year": "1973-02-09"
+  }
+},
+{
+  "_id": {
+    "$oid": "6631a8f190a58b1849d4126f"
+  },
+  "title": "Inception",
+  "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
+  "genre": {
+    "name": "Sci-Fi",
+    "description": "A film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science."
+  },
+  "director": {
+    "name": "Christoper Nolan",
+    "bio": "Christopher Nolan is an Academy Award-winning movie director and screenwriter who's helmed several hit films, including Inception, The Dark Knight, Interstellar, and Oppenheimer.",
+    "birth_year": "1970-07-30"
+  }
+},
+{
+  "_id": {
+    "$oid": "6631a8f590a58b1849d41270"
+  },
+  "title": "Fearless",
+  "description": "After a terrible tragedy, a martial artist (Jet Li) retreats to a remote village to gain a new appreciation for the important things in life, but when he returns to the city to reconcile his past with the present, he gets caught up in a duel to the death defending China's honor.",
+  "genre": {
+    "name": "Action",
+    "description": "A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences."
+  },
+  "director": {
+    "name": "Ronny Yu",
+    "bio": "A Hong Kong film director, producer, and movie writer.",
+    "birth_year": "1950-07-01"
+  }
+},
+{
+  "_id": {
+    "$oid": "6631a8f890a58b1849d41271"
+  },
+  "title": "The Karate Kid",
+  "description": "Work causes a single mother to move to China with her young son; in his new home, the boy embraces kung fu, taught to him by a master.",
+  "genre": {
+    "name": "Action",
+    "description": "A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences."
+  },
+  "director": {
+    "name": "Harald Zwart",
+    "bio": "A Dutch-Norwegian film director.",
+    "birth_year": "1965-07-01"
+  }
+}]
