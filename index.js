@@ -1,30 +1,25 @@
 const express = require('express');
+    morgan = require('morgan'),
+    fs = require('fs'),
+    path = require('path');
+    uuid = require('uuid');
 const mongoose = require('mongoose');
-//const bodyParser = require('body-parser');
 const Models = require('./models.js');
 
-const Movies = Models.Movie;
-const Users = Models.User;
-const Directors = Models.Director;
-const Genres = Models.Genre;
+// Connect to database locally
 
-/** 
  mongoose.connect('mongodb://localhost:27017/[myflixdb]', { 
     useNewUrlParser: true, 
     useUnifiedTopology: true 
 });
-*/
-mongoose.connect('process.env.CONNECTION_URI', { 
+
+/**
+// Connect to database remotely
+mongoose.connect( process.env.CONNECTION_URI, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true 
 });
-
-//app.use(bodyParser.json());
-//const morgan = require('morgan');
-uuid = require('uuid');
-
-//const fs = require('fs'); // import built in node modules fs and path 
-//const path = require('path'); // import built in node modules path  
+*/
 
 
 const app = express();
@@ -39,12 +34,18 @@ const passport = require('passport');
 require('./passport');
 const { check, validationResult } = require('express-validator');
 
+const Movies = Models.Movie;
+const Users = Models.User;
+const Directors = Models.Director;
+const Genres = Models.Genre;
 
+// create a write stream and append to log.txt file
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'}) 
+
+app.use(morgan('combined', {stream: accessLogStream}));
 app.use(express.static('public'));
 
 
-
-//const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'}) // create a write stream and append to log.txt file
 
 /** 
 let movies = [
