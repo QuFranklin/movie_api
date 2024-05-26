@@ -6,25 +6,30 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 // Connect to database locally
-
+/** 
  mongoose.connect('mongodb://localhost:27017/[myflixdb]', { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true 
-});
-
-/**
-// Connect to database remotely
-mongoose.connect( process.env.CONNECTION_URI, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true 
 });
 */
 
-
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Connect to database remotely
+mongoose.connect(process.env.CONNECTION_URI, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+})
+.then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((error) => {
+    console.error("Connection error:", error);
+});
 
 const cors = require('cors');
 app.use(cors());
@@ -43,9 +48,8 @@ const Genres = Models.Genre;
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'}) 
 
 app.use(morgan('combined', {stream: accessLogStream}));
+
 app.use(express.static('public'));
-
-
 
 /** 
 let movies = [
