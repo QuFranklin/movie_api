@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "66369fcf60bb2ea9bec633a3"
+  },
+  "name": "Romance",
+  "description": "A genre fiction novel that primary focuses on the relationship and romantic love between two people, typically with an emotionally satisfying and optimistic ending."
+},
+{
+  "_id": {
+    "$oid": "6636a03f60bb2ea9bec633a4"
+  },
+  "name": "Action",
+  "description": "A form of genre fiction whose subject matter is characterized by emphasis on exciting action sequences."
+},
+{
+  "_id": {
+    "$oid": "6636a06e60bb2ea9bec633a5"
+  },
+  "name": "Sci-Fi",
+  "description": "A film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science."
+},
+{
+  "_id": {
+    "$oid": "6636a09160bb2ea9bec633a6"
+  },
+  "name": "Fantasy",
+  "description": "A genre of speculative fiction involving magical elements, typically set in a fantasy world and usually inspired by mythology or folklore."
+}]

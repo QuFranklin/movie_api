@@ -21,4 +21,52 @@
   "name": "Jon Watts",
   "bio": "An American film director, producer and screenwriter.",
   "birth_year": "1982-06-28"
+},
+{
+  "_id": {
+    "$oid": "665faea0eb9a60135142d779"
+  },
+  "name": "Anthony Russo",
+  "bio": "Collectively known as the Russo brothers are American directors, producers, and screenwriter.",
+  "birth_year": "1970-02-03"
+},
+{
+  "_id": {
+    "$oid": "665faefeeb9a60135142d77a"
+  },
+  "name": "Wilson Yip",
+  "bio": "A Hong Kong actor, filmmaker and screenwriter.",
+  "birth_year": "1963-10-23"
+},
+{
+  "_id": {
+    "$oid": "665faf36eb9a60135142d77b"
+  },
+  "name": "Brett Ratner",
+  "bio": "An American film director and producer.",
+  "birth_year": "1969-03-28"
+},
+{
+  "_id": {
+    "$oid": "665fafa6eb9a60135142d77c"
+  },
+  "name": "Hayao Miyazaki",
+  "bio": "A Japanese animator, filmmaker, and manga artist.",
+  "birth_year": "1941-01-05"
+},
+{
+  "_id": {
+    "$oid": "665fafedeb9a60135142d77d"
+  },
+  "name": "Ronny Yu",
+  "bio": "A Hong Kong film director, producer, and movie writer.",
+  "birth_year": "1950-07-01"
+},
+{
+  "_id": {
+    "$oid": "665fb07beb9a60135142d77e"
+  },
+  "name": "Harald Zwart",
+  "bio": "A Dutch-Norwegian film director.",
+  "birth_year": "1965-07-01"
 }]
