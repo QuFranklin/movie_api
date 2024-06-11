@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 */
 
 // Connect to database remotely
-mongoose.connect(process.env.DATABASE_URL, { 
+mongoose.connect(process.env.DATABASE_URI, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true 
 })
