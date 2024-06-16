@@ -374,7 +374,7 @@ paths:
  */
 
 app.get('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {  
-    await Users.findOne({ username: req.params.username })
+    await Users.findOne({ Username: req.params.username })
         .then((user) => {
             res.json(user);
         })
@@ -395,11 +395,11 @@ paths:
  */
 app.post('/users', 
     [
-        check('username', 'Username is required.').not().isEmpty(),
-        check('username', 'Username must contain at least 5 characters.').isLength({min: 5}),
-        check('username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-        check('password', 'Password is required').not().isEmpty(),
-        check('email', 'Email does not appear to be valid').isEmail()
+        check('Username', 'Username is required.').not().isEmpty(),
+        check('Username', 'Username must contain at least 5 characters.').isLength({min: 5}),
+        check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+        check('Password', 'Password is required').not().isEmpty(),
+        check('Email', 'Email does not appear to be valid').isEmail()
     ], 
         async (req, res) => {
             // check the validation object for errors
@@ -407,17 +407,18 @@ app.post('/users',
             if (!errors.isEmpty()) {
                 return res.status(422).json({ errors: errors.array() });
             }   
-            let hashedPassword = Users.hashPassword(req.body.password);
-            await Users.findOne({ username: req.body.username })
+            
+            let hashedPassword = Users.hashPassword(req.body.Password);
+            await Users.findOne({ Username: req.body.Username })
                 .then((user) => {
                     if (user) {
-                    return res.status(400).send(req.body.username + 'already exists');
+                    return res.status(400).send(req.body.Username + 'already exists');
                     } else {
                     Users
                         .create({
-                            username: req.body.username,
-                            password: hashedPassword,
-                            email: req.body.email,
+                            Username: req.body.Username,
+                            Password: hashedPassword,
+                            Email: req.body.Email,
                             birthDate: req.body.birthDate
                         })
                         .then((user) => {
@@ -443,16 +444,16 @@ app.post('/users',
  */
 app.put('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     // CONDITION TO CHECK ADDED HERE
-    if(req.user.username !== req.params.username){
+    if(req.user.Username !== req.params.Username){
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS 
     
-    await Users.findOneAndUpdate({ username: req.params.username}, 
+    await Users.findOneAndUpdate({ Username: req.params.Username}, 
         { $set: {
-            username: req.body.username,
-            password: req.body.password,
-            email: req.body.email,
+            Username: req.body.Username,
+            Password: req.body.Password,
+            Email: req.body.Email,
             birthDate: req.body.birthDate
           }
         },
@@ -477,12 +478,12 @@ paths:
  */
 
 app.delete("/users/:username", passport.authenticate('jwt', { session: false }), async(req, res) => {
-    await Users.findOneAndDelete({ username: req.params.username })
+    await Users.findOneAndDelete({ Username: req.params.Username })
         .then((user) => {
             if (!user) {
-              res.status(400).send(req.params.username + " was not found");
+              res.status(400).send(req.params.Username + " was not found");
             } else {
-              res.status(200).send(req.params.username + " was deleted.");
+              res.status(200).send(req.params.Username + " was deleted.");
             }
         })
         .catch((err) => {
@@ -499,7 +500,7 @@ paths:
       description: Adds a movie to the favorite movie list of a user.
  */
 app.post('/users/:username/favmovies/:MovieID', passport.authenticate('jwt', { session: false }), async (req, res) => { // Add a movie to user's favorite movie list
-    await Users.findOneAndUpdate({ username: req.params.username}, {
+    await Users.findOneAndUpdate({ Username: req.params.Username}, {
         $push: { favmovies: req.params.MovieID }},
         { new: true })
         .then((updatedUser) => {
@@ -519,7 +520,7 @@ paths:
       description: Removes a movie from the favorite list of a user.
  */
 app.delete('/users/:username/:MovieID', passport.authenticate('jwt', { session: false }), async  (req, res) => { //
-    await Users.findOneAndUpdate({ username: req.params.username }, {
+    await Users.findOneAndUpdate({ Username: req.params.Username }, {
         $pull: { favmovies: req.params.MovieID}},
         { new: true })
         .then((updatedUser) => {
@@ -531,10 +532,6 @@ app.delete('/users/:username/:MovieID', passport.authenticate('jwt', { session: 
         });
 });
       
-    
-     
-
-
 // error handler
 app.use((err, req, res, next) => {
     console.error(err.stack);
