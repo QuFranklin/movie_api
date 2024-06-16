@@ -409,7 +409,7 @@ app.post('/users',
             }   
             
             let hashedPassword = Users.hashPassword(req.body.Password);
-            await Users.findOne({ Username: req.body.Username })
+            await Users.findOne({ Username: req.body.username })
                 .then((user) => {
                     if (user) {
                     return res.status(400).send(req.body.Username + 'already exists');
@@ -444,12 +444,12 @@ app.post('/users',
  */
 app.put('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     // CONDITION TO CHECK ADDED HERE
-    if(req.user.Username !== req.params.Username){
+    if(req.user.Username !== req.params.username){
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS 
     
-    await Users.findOneAndUpdate({ Username: req.params.Username}, 
+    await Users.findOneAndUpdate({ Username: req.params.username}, 
         { $set: {
             Username: req.body.Username,
             Password: req.body.Password,
@@ -478,12 +478,12 @@ paths:
  */
 
 app.delete("/users/:username", passport.authenticate('jwt', { session: false }), async(req, res) => {
-    await Users.findOneAndDelete({ Username: req.params.Username })
+    await Users.findOneAndDelete({ Username: req.params.username })
         .then((user) => {
             if (!user) {
-              res.status(400).send(req.params.Username + " was not found");
+              res.status(400).send(req.params.username + " was not found");
             } else {
-              res.status(200).send(req.params.Username + " was deleted.");
+              res.status(200).send(req.params.username + " was deleted.");
             }
         })
         .catch((err) => {
@@ -500,7 +500,7 @@ paths:
       description: Adds a movie to the favorite movie list of a user.
  */
 app.post('/users/:username/favmovies/:MovieID', passport.authenticate('jwt', { session: false }), async (req, res) => { // Add a movie to user's favorite movie list
-    await Users.findOneAndUpdate({ Username: req.params.Username}, {
+    await Users.findOneAndUpdate({ Username: req.params.username}, {
         $push: { favmovies: req.params.MovieID }},
         { new: true })
         .then((updatedUser) => {
@@ -520,7 +520,7 @@ paths:
       description: Removes a movie from the favorite list of a user.
  */
 app.delete('/users/:username/:MovieID', passport.authenticate('jwt', { session: false }), async  (req, res) => { //
-    await Users.findOneAndUpdate({ Username: req.params.Username }, {
+    await Users.findOneAndUpdate({ Username: req.params.username }, {
         $pull: { favmovies: req.params.MovieID}},
         { new: true })
         .then((updatedUser) => {
