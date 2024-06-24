@@ -1,15 +1,18 @@
-const express = require('express');
+const express = require('express'),
     morgan = require('morgan'),
     fs = require('fs'),
-    path = require('path');
-    uuid = require('uuid');
+    path = require('path'),
+    uuid = require('uuid'),
+    bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
+require('dotenv').config({ path: '.env' });
+const { check, validationResult } = require('express-validator');
+
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 // Connect to database locally
 /** 
@@ -20,10 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 */
 
 // Connect to database remotely
-mongoose.connect(process.env.DATABASE_URI, { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true 
-})
+mongoose.connect(process.env.DATABASE)
 .then(() => {
     console.log("Connected to MongoDB");
   })
@@ -31,13 +31,16 @@ mongoose.connect(process.env.DATABASE_URI, {
     console.error("Connection error:", error);
 });
 
+app.use(bodyParser.json());
+
 const cors = require('cors');
 app.use(cors());
 
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
-const { check, validationResult } = require('express-validator');
+
+
 
 const Movies = Models.Movie;
 const Users = Models.User;
