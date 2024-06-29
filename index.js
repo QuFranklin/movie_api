@@ -243,7 +243,7 @@ paths:
        description: Returns a JSON array containing information about movies.
  */
 
-app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => { // Gets the list of movies
+app.get('/movies', async (req, res) => { // Gets the list of movies
     await Movies.find()
     .then((movies) => {
         res.status(201).json(movies);
