@@ -358,7 +358,7 @@ paths:
        description: Returns a JSON array containing information about users.
  */
 
-app.get('/users', async (req, res) => { // Gets all users
+app.get('/users',  passport.authenticate('jwt', { session: false }), async (req, res) => { // Gets all users
     await Users.find()
       .then((users) => {
         res.status(201).json(users);
