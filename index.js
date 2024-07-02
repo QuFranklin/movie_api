@@ -31,6 +31,7 @@ mongoose.connect(process.env.DATABASE)
     console.error("Connection error:", error);
 });
 
+
 app.use(bodyParser.json());
 
 const cors = require('cors');
@@ -357,7 +358,7 @@ paths:
        description: Returns a JSON array containing information about users.
  */
 
-app.get('/users', passport.authenticate('jwt', { session: false }), async (req, res) => { // Gets all users
+app.get('/users',  async (req, res) => { // Gets all users
     await Users.find()
       .then((users) => {
         res.status(201).json(users);
@@ -377,7 +378,7 @@ paths:
  */
 
 app.get('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {  
-    await Users.findOne({ Username: req.params.username })
+    await Users.findOne({ Username: req.params.Username })
         .then((user) => {
             res.json(user);
         })
@@ -412,7 +413,7 @@ app.post('/users',
             }   
             
             let hashedPassword = Users.hashPassword(req.body.Password);
-            await Users.findOne({ Username: req.body.username })
+            await Users.findOne({ Username: req.body.Username })
                 .then((user) => {
                     if (user) {
                     return res.status(400).send(req.body.Username + 'already exists');
