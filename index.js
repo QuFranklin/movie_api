@@ -358,7 +358,7 @@ paths:
        description: Returns a JSON array containing information about users.
  */
 
-app.get('/users', passport.authenticate('jwt', { session: false }), async (req, res) => { // Gets all users
+app.get('/users', async (req, res) => { // Gets all users
     await Users.find()
       .then((users) => {
         res.status(201).json(users);
@@ -416,7 +416,7 @@ app.post('/users',
             await Users.findOne({ Username: req.body.Username })
                 .then((user) => {
                     if (user) {
-                    return res.status(400).send(req.body.Username + 'already exists');
+                    return res.status(400).send(req.body.Username + ' already exists');
                     } else {
                     Users
                         .create({
