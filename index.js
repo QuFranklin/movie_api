@@ -244,7 +244,7 @@ paths:
        description: Returns a JSON array containing information about movies.
  */
 
-app.get('/movies',  async (req, res) => { // Gets the list of movies
+app.get('/movies', passport.authenticate('jwt', { session: false }),  async (req, res) => { // Gets the list of movies
     await Movies.find()
     .then((movies) => {
         res.status(201).json(movies);
@@ -255,7 +255,7 @@ app.get('/movies',  async (req, res) => { // Gets the list of movies
     });
 });
 
-app.get('/movies/:MovieID',  async (req, res) => { // Gets movie by ID
+app.get('/movies/:MovieID', passport.authenticate('jwt', { session: false }),  async (req, res) => { // Gets movie by ID
     await Movies.findOne({ _id: req.params.MovieID })
     .then((movies) => {
         res.status(201).json(movies);
