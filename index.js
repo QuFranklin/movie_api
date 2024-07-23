@@ -256,7 +256,7 @@ app.get('/movies',  async (req, res) => { // Gets the list of movies
 });
 
 app.get('/movies/:MovieID',  async (req, res) => { // Gets movie by ID
-    await Movies.findOne( {MovieID: req.params.MovieID} )
+    await Movies.findOne({ _id: req.params.MovieID })
     .then((movies) => {
         res.status(201).json(movies);
     })
