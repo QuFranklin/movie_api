@@ -255,6 +255,19 @@ app.get('/movies',  async (req, res) => { // Gets the list of movies
     });
 });
 
+app.get('/movies/:MovieID',  async (req, res) => { // Gets movie by ID
+    await Movies.findOne( {MovieID: req.params.MovieID} )
+    .then((movies) => {
+        res.status(201).json(movies);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+    });
+});
+
+
+
 /**
 paths:
   /movies/{title}:
