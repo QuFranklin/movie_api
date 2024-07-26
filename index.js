@@ -536,7 +536,7 @@ paths:
       summary: Remove a movie from user's favorite list
       description: Removes a movie from the favorite list of a user.
  */
-app.delete('/users/:username/:MovieID', passport.authenticate('jwt', { session: false }), async  (req, res) => { //
+app.delete('/users/:username/favmovies/:MovieID', passport.authenticate('jwt', { session: false }), async  (req, res) => { //
     await Users.findOneAndUpdate({ Username: req.params.username }, {
         $pull: { favmovies: req.params.MovieID}},
         { new: true })
