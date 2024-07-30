@@ -471,7 +471,7 @@ app.put('/users/:username',  async (req, res) => {
             Username: req.body.Username,
             Password: req.body.Password,
             Email: req.body.Email,
-            BirthDay: req.body.Birthday
+            Birthday: req.body.Birthday
           }
         },
         { new: true }) // This line makes sure that the updated document is returned
