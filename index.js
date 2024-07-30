@@ -459,7 +459,7 @@ app.post('/users',
       summary: Update username
       description: Updates the username of a user.
  */
-app.put('/users/:username',  async (req, res) => {
+app.put('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     // CONDITION TO CHECK ADDED HERE
     if(req.user.Username !== req.params.username){
         return res.status(400).send('Permission denied');
