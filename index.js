@@ -436,7 +436,7 @@ app.post('/users',
                             Username: req.body.Username,
                             Password: hashedPassword,
                             Email: req.body.Email,
-                            birthDate: req.body.birthDate
+                            Birthday: req.body.Birthday
                         })
                         .then((user) => {
                             res.status(201).json(user) 
@@ -471,7 +471,7 @@ app.put('/users/:username',  async (req, res) => {
             Username: req.body.Username,
             Password: req.body.Password,
             Email: req.body.Email,
-            birthDate: req.body.birthDate
+            BirthDay: req.body.Birthday
           }
         },
         { new: true }) // This line makes sure that the updated document is returned
