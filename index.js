@@ -516,7 +516,7 @@ paths:
       summary: Add a movie to a user's favorite movie list
       description: Adds a movie to the favorite movie list of a user.
  */
-app.post('/users/:username/:MovieID', async (req, res) => { // Add a movie to user's favorite movie list
+app.post('/users/:username/:MovieID', passport.authenticate('jwt', { session: false }), async (req, res) => { // Add a movie to user's favorite movie list
     await Users.findOneAndUpdate({ Username: req.params.username}, {
         $push: { FavoriteMovies: req.params.MovieID }},
         { new: true })
@@ -536,7 +536,7 @@ paths:
       summary: Remove a movie from user's favorite list
       description: Removes a movie from the favorite list of a user.
  */
-app.delete('/users/:username/:MovieID', async  (req, res) => { //
+app.delete('/users/:username/:MovieID', passport.authenticate('jwt', { session: false }), async  (req, res) => { //
     await Users.findOneAndUpdate({ Username: req.params.username }, {
         $pull: { FavoriteMovies: req.params.MovieID}},
         { new: true })
