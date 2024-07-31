@@ -511,7 +511,7 @@ app.delete("/users/:username", passport.authenticate('jwt', { session: false }),
 
 /**
 paths:
-  /users/{username}/{MovieID}:
+  /users/{MovieID}:
     post:
       summary: Add a movie to a user's favorite movie list
       description: Adds a movie to the favorite movie list of a user.
@@ -531,7 +531,7 @@ app.post('/users/:username/:MovieID', passport.authenticate('jwt', { session: fa
 
 /**
 paths:
-  /users/{username}/{MovieID}:
+  /users/{MovieID}:
     delete:
       summary: Remove a movie from user's favorite list
       description: Removes a movie from the favorite list of a user.
