@@ -511,14 +511,14 @@ app.delete("/users/:username", passport.authenticate('jwt', { session: false }),
 
 /**
 paths:
-  /users/{username}/favmovies/{MovieID}:
+  /users/{username}/{MovieID}:
     post:
       summary: Add a movie to a user's favorite movie list
       description: Adds a movie to the favorite movie list of a user.
  */
 app.post('/users/:username/:MovieID', async (req, res) => { // Add a movie to user's favorite movie list
     await Users.findOneAndUpdate({ Username: req.params.username}, {
-        $push: { favmovies: req.params.MovieID }},
+        $push: { FavoriteMovies: req.params.MovieID }},
         { new: true })
         .then((updatedUser) => {
             res.status(200).json(updatedUser)
@@ -538,7 +538,7 @@ paths:
  */
 app.delete('/users/:username/:MovieID', async  (req, res) => { //
     await Users.findOneAndUpdate({ Username: req.params.username }, {
-        $pull: { favmovies: req.params.MovieID}},
+        $pull: { FavoriteMovies: req.params.MovieID}},
         { new: true })
         .then((updatedUser) => {
             res.status(200).json(updatedUser)
