@@ -39,8 +39,7 @@ const cors = require('cors');
 let allowedOrigins = [
     'http://localhost:8080', 
     'http://testsite.com', 
-    'http://localhost:1234',
-    'https://moviesdb-6abb3284c2fb.herokuapp.com/', 
+    'http://localhost:1234', 
     'https://my-awesome-site123.netlify.app'
 ];
 
