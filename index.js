@@ -35,24 +35,7 @@ mongoose.connect(process.env.DATABASE)
 app.use(bodyParser.json());
 
 const cors = require('cors');
-
-let allowedOrigins = [
-    'http://localhost:8080', 
-    'http://testsite.com', 
-    'http://localhost:1234', 
-    'https://my-awesome-site123.netlify.app'
-];
-
-app.use(cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) { // If a specific origin isn’t found on the list of allowed origins
-        let message = 'The CORS policy for this application does not allow access from origin ' + origin;
-        return callback(new Error(message), false);
-      }
-      return callback(null, true);
-    }
-}));
+app.use(cors());
 
 let auth = require('./auth')(app);
 const passport = require('passport');
@@ -388,7 +371,7 @@ paths:
        description: Returns a JSON array containing information about users.
  */
 
-app.get('/users', passport.authenticate('jwt', { session: false }), async (req, res) => { // Gets all users
+app.get('/users', passport.authenticate('jwt', { session: false }),async (req, res) => { // Gets all users
     await Users.find()
       .then((users) => {
         res.status(201).json(users);
